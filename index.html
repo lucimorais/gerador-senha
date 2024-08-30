@@ -24,6 +24,8 @@
     <button>Copiar Senha</button>
 
     <script>
+      let passwordLength = 16;
+
       function generatePassword() {
         const chars =
           "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@$*()[]";
@@ -31,7 +33,7 @@
         let password = "";
 
         // Crio um for para fazer a seleção dos caracteres da const chars. Ele vai gerar uma senha aleatória de 8 caracteres.
-        for (let i = 0; i < 8; i++) {
+        for (let i = 0; i < passwordLength; i++) {
           // Gero um número aleatório entre 0 e 1 (math.random), multiplico por chars.length para escolher o comprimento do chars
           //  e arredondo (math.floor) esse valor para baixo, para que seja um índice válido.
           const randomNumber = Math.floor(Math.random() * chars.length);
@@ -42,9 +44,15 @@
 
         const inputEl = document.querySelector("#password");
         inputEl.value = password;
-
-        console.log(password);
       }
+
+      // Função que vai lidar com a atualização do valor do password de acordo com a posição do "slider."
+      const passwordLengthEl = document.querySelector("#password-length");
+      passwordLengthEl.addEventListener("input", function () {
+        passwordLength = passwordLengthEl.value;
+
+        generatePassword();
+      });
 
       generatePassword();
     </script>
