@@ -30,10 +30,19 @@
 
         let password = "";
 
+        // Crio um for para fazer a seleção dos caracteres da const chars. Ele vai gerar uma senha aleatória de 8 caracteres.
         for (let i = 0; i < 8; i++) {
+          // Gero um número aleatório entre 0 e 1 (math.random), multiplico por chars.length para escolher o comprimento do chars
+          //  e arredondo (math.floor) esse valor para baixo, para que seja um índice válido.
           const randomNumber = Math.floor(Math.random() * chars.length);
+
+          // Extraio um caractere (chars.substring) da sring chars na posição randomNumber e adiciono à "password"
           password += chars.substring(randomNumber, randomNumber + 1);
         }
+
+        const inputEl = document.querySelector("#password");
+        inputEl.value = password;
+
         console.log(password);
       }
 
