@@ -9,7 +9,7 @@
       href="https://fonts.googleapis.com/css2?family=Inconsolata:wdth,wght@99,600&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
       rel="stylesheet"
     />
-    />
+
     <link rel="stylesheet" href="reset.css" />
     <link rel="stylesheet" href="style.css" />
 
@@ -30,8 +30,12 @@
             <input type="text" name="password" id="password" />
           </div>
           <div class="actions">
-            <button class="copyButton">C</button>
-            <button class="renew">R</button>
+            <button id="copyButton">
+              <img src="copy.svg" alt="" width="42" />
+            </button>
+            <button id="renew">
+              <img src="renew.svg" alt="" width="42" />
+            </button>
           </div>
         </div>
       </section>
@@ -83,8 +87,8 @@
         generatePassword();
       });
 
-      const copyButtonEl = document.querySelector("#copy");
-      copyButtonEl.addEventListener("click", copy);
+      document.querySelector("#copy").addEventListener("click", copy);
+      document.querySelector("#copyButton").addEventListener("click", copy);
 
       generatePassword();
     </script>
