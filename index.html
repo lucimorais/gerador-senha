@@ -85,6 +85,8 @@
 
       // Função que vai lidar com a atualização do valor do password de acordo com a posição do "slider."
       const passwordLengthEl = document.querySelector("#password-length");
+
+      // Aqui eu simplesmente coloco o valor do slider dentro do passwordLength
       passwordLengthEl.addEventListener("input", function () {
         passwordLength = passwordLengthEl.value;
         generatePassword();
