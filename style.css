@@ -99,11 +99,11 @@ main {
   background-color: #27ae58;
 }
 
-.customization {
+.customize {
   padding: 1rem 1.5rem;
 }
 
-.customization .title {
+.customize .title {
   border-bottom: 1px solid #f0f0f0;
   font-size: 1.7rem;
   font-weight: bold;
