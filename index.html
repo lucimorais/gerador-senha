@@ -45,16 +45,34 @@
 
       <section class="box customization">
         <h3 class="title">Personalizar</h3>
+        <div class="actions">
+          <div class="password-length">
+            <p>Tamanho: <span id="password-length-text">16</span></p>
+            <input
+              type="range"
+              name="password-length"
+              id="password-length"
+              value="16"
+              min="4"
+              max="64"
+            />
+          </div>
+          <div class="config">
+            <label class="checkbox-container">
+              <span class="text">Maiúsculas</span>
+              <input type="checkbox" id="uppercase-check" checked />
+            </label>
+            <label class="checkbox-container">
+              <span class="text">Números</span>
+              <input type="checkbox" id="number-check" checked />
+            </label>
+            <label class="checkbox-container">
+              <span class="text">Símbolos</span>
+              <input type="checkbox" id="symbols-check" checked />
+            </label>
+          </div>
+        </div>
       </section>
-
-      <input
-        type="range"
-        name="password-length"
-        id="password-length"
-        value="16"
-        min="4"
-        max="64"
-      />
 
       <button id="copy">Copiar Senha</button>
     </main>
