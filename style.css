@@ -98,3 +98,15 @@ main {
 .security-indicator .bar.safe {
   background-color: #27ae58;
 }
+
+.customization {
+  padding: 1rem 1.5rem;
+}
+
+.customization .title {
+  border-bottom: 1px solid #f0f0f0;
+  font-size: 1.7rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  padding-bottom: 0.75rem;
+}
