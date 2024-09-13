@@ -158,3 +158,43 @@ main {
   background: #9b51e0;
   cursor: pointer;
 }
+
+.checkbox-container {
+  display: block; /* Agrupa as checkboxes em bloco */
+  position: relative /* É para que fique um em baixo do outro */;
+  padding-left: 2rem;
+  margin-bottom: 1rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.checkbox-container input {
+  position: absolute;
+  height: 0;
+  width: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+
+.checkbox-container .checkbox {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 20px;
+  width: 20px;
+  background-color: #dddddd;
+  transition: all 0.2s;
+}
+
+.checkbox-container:hover input ~ .checkbox {
+  /* Aplica o estilo quando a caixa está desligada e o mouse em cima */
+  background-color: #eb5757;
+}
+
+.checkbox-container input:checked ~ .checkbox {
+  /* Aplica o estilo quando o input receber o valor "checked" */
+  background-color: #9b51e0;
+}
