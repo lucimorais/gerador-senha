@@ -191,10 +191,29 @@ main {
 
 .checkbox-container:hover input ~ .checkbox {
   /* Aplica o estilo quando a caixa está desligada e o mouse em cima */
-  background-color: #eb5757;
+  background-color: #cccccc;
 }
 
 .checkbox-container input:checked ~ .checkbox {
   /* Aplica o estilo quando o input receber o valor "checked" */
   background-color: #9b51e0;
+}
+
+.checkbox-container .checkbox:after {
+  /* O :after serve para adicionar conteúdo e estilos após o conteúdo de um elemento,
+  sem precisar modificar o HTMl original. É como se eu criasse uma classe nova */
+  content: "";
+  display: none;
+  position: absolute;
+  left: 7px;
+  top: 3px;
+  width: 5px;
+  height: 13px;
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  transform: rotate(45deg);
+}
+
+.checkbox-container input:checked ~ .checkbox:after {
+  display: block;
 }
