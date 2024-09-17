@@ -84,12 +84,46 @@
     </main>
     <script>
       const inputEl = document.querySelector("#password");
+      const upperCaseCheckEl = document.querySelector("#uppercase-check");
+      const numberCheckEl = document.querySelector("#number-check");
+      const symbolCheckEl = document.querySelector("#symbols-check");
 
       let passwordLength = 16;
 
       function generatePassword() {
-        const chars =
-          "abcdefghjkmnpqrstuvwxyzABCDEFGHJKLMNPQRSTUVWXYZ123456789?!@$*()[]";
+        let chars = "abcdefghjkmnpqrstuvwxyz";
+
+        const upperCaseChars = "ABCDEFGHJKLMNPQRSTUVWXYZ";
+        const numberChars = "123456789";
+        const symbolChars = "?!@$*()[]";
+
+        //  Método de checagem com ifs (o que é meio cringe)
+        if (upperCaseCheckEl.checked) {
+          chars += upperCaseChars;
+        }
+
+        if (numberCheckEl.checked) {
+          chars += numberChars;
+        }
+
+        if (symbolCheckEl.checked) {
+          chars += symbolChars;
+        }
+
+        // Método de checagem com array:
+
+        // const checks = [
+        //   { element: upperCaseCheckEl, chars: upperCaseChars },
+        //   { element: numberCheckEl, chars: numberChars },
+        //   { element: symbolCheckEl, chars: symbolChars },
+        // ];
+
+        // checks.forEach((check) => {
+        //   if (check.element.checked) {
+        //     chars += check.chars;
+
+        //   }
+        // });
 
         let password = "";
 
@@ -118,6 +152,16 @@
       passwordLengthEl.addEventListener("input", function () {
         passwordLength = passwordLengthEl.value;
         generatePassword();
+      });
+
+      // upperCaseCheckEl.addEventListener("click", generatePassword);
+      // numberCheckEl.addEventListener("click", generatePassword);
+      // symbolCheckEl.addEventListener("click", generatePassword);
+
+      const elementsForClick = [upperCaseCheckEl, numberCheckEl, symbolCheckEl];
+
+      elementsForClick.forEach((element) => {
+        element.addEventListener("click", generatePassword);
       });
 
       document.querySelector("#copy").addEventListener("click", copy);
