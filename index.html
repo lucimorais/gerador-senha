@@ -39,7 +39,7 @@
           </div>
         </div>
         <div class="security-indicator">
-          <div class="bar completed" id="security-indicator-bar"></div>
+          <div class="bar safe" id="security-indicator-bar"></div>
         </div>
       </section>
 
@@ -87,6 +87,9 @@
       const upperCaseCheckEl = document.querySelector("#uppercase-check");
       const numberCheckEl = document.querySelector("#number-check");
       const symbolCheckEl = document.querySelector("#symbols-check");
+      const securityIndicatorBarEl = document.querySelector(
+        "#security-indicator-bar"
+      );
 
       let passwordLength = 16;
 
@@ -138,6 +141,42 @@
         }
 
         inputEl.value = password;
+        calculateQuality();
+      }
+
+      //Essa é a função que não foi otimizada.
+      function calculateQuality() {
+        const percent = Math.round(
+          (passwordLength / 64) * 25 +
+            (upperCaseCheckEl.checked ? 15 : 0) +
+            (numberCheckEl.checked ? 25 : 0) +
+            (symbolCheckEl.checked ? 35 : 0)
+        );
+
+        securityIndicatorBarEl.style.width = `${percent}%`;
+
+        if (percent > 69) {
+          // safe
+          securityIndicatorBarEl.classList.remove("critical");
+          securityIndicatorBarEl.classList.remove("warning");
+          securityIndicatorBarEl.classList.add("safe");
+        } else if (percent > 50) {
+          // Warning
+          securityIndicatorBarEl.classList.remove("critical");
+          securityIndicatorBarEl.classList.add("warning");
+          securityIndicatorBarEl.classList.remove("safe");
+        } else {
+          // Critical
+          securityIndicatorBarEl.classList.add("critical");
+          securityIndicatorBarEl.classList.remove("warning");
+          securityIndicatorBarEl.classList.remove("safe");
+        }
+
+        if (percent >= 99) {
+          securityIndicatorBarEl.classList.add("completed");
+        } else {
+          securityIndicatorBarEl.classList.remove("completed");
+        }
       }
 
       // Função que vai copiar a senha:
