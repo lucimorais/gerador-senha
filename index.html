@@ -141,7 +141,7 @@
         }
 
         inputEl.value = password;
-        calculateQuality();
+        optmizedCalculateQuality();
       }
 
       //Essa é a função que não foi otimizada.
@@ -170,6 +170,46 @@
           securityIndicatorBarEl.classList.add("critical");
           securityIndicatorBarEl.classList.remove("warning");
           securityIndicatorBarEl.classList.remove("safe");
+        }
+
+        if (percent >= 99) {
+          securityIndicatorBarEl.classList.add("completed");
+        } else {
+          securityIndicatorBarEl.classList.remove("completed");
+        }
+      }
+
+      function optmizedCalculateQuality() {
+        // Crio um array para os elementos do DOM e defino os pesos
+        const checks = [
+          { element: upperCaseCheckEl, value: 15 },
+          { element: numberCheckEl, value: 25 },
+          { element: symbolCheckEl, value: 35 },
+        ];
+
+        const basePercent = (passwordLength / 64) * 25;
+
+        // O reduce é para verificar os arrays e ir acumulando os valores deles. Se o elemento que ele estiver verificando estiver checked, ele adiciona o check.value.
+        // Caso o check seja falso, ele adiciona 0.
+        // O "acc + " soma o valor atual do acumulador com o valor do check. O "0" no final é para definir o valor inicial do acumulador, que é zero 0.
+        const additionalPercent = checks.reduce(
+          (acc, check) => acc + (check.element.checked ? check.value : 0),
+          0
+        );
+
+        const percent = Math.round(basePercent + additionalPercent);
+
+        securityIndicatorBarEl.style.width = `${percent}%`;
+
+        const classes = ["critical", "warning", "safe"];
+        securityIndicatorBarEl.classList.remove(...classes);
+
+        if (percent > 69) {
+          securityIndicatorBarEl.classList.add("safe");
+        } else if (percent > 50) {
+          securityIndicatorBarEl.classList.add("warning");
+        } else {
+          securityIndicatorBarEl.classList.add("critical");
         }
 
         if (percent >= 99) {
