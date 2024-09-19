@@ -151,9 +151,12 @@
       // Aqui eu simplesmente coloco o valor do slider dentro do passwordLength
       passwordLengthEl.addEventListener("input", function () {
         passwordLength = passwordLengthEl.value;
+        document.querySelector("#password-length-text").innerText =
+          passwordLength;
         generatePassword();
       });
 
+      // Eventos adicionados por linhas aos elementos, o que é cringe.
       // upperCaseCheckEl.addEventListener("click", generatePassword);
       // numberCheckEl.addEventListener("click", generatePassword);
       // symbolCheckEl.addEventListener("click", generatePassword);
